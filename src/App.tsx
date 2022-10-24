@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     if (data && !loading && !error) {
-      setPokemons(data?.pokemon_v2_itemname)
+      setPokemons(data?.pokemon_v2_item)
     }
   }, [data])
 
