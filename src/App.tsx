@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import  { useEffect } from 'react'
+import { useQuery } from '@apollo/client'
+import { GET_ALL_POKEMONS } from './queries'
 
 function App() {
+  const { data, loading, error } = useQuery(GET_ALL_POKEMONS)
+  useEffect(()=>{
+    console.log('===========',data)
+  }, [data])
+
+  const handeleClick = async ()=>{
+    // https://pokeapi.co/api/v2/pokemon/ditto
+    const respJson = await  fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+    const resp = await respJson.json()
+    console.log('resp====', resp)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={handeleClick}>Test api</button>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
