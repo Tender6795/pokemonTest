@@ -11,7 +11,7 @@ export const GET_ALL_POKEMONS = gql`
 
 export const GET_POKEMONS_BY_NAME = gql`
   query getPokemonsByName($name: String){
-    pokemon_v2_item(where: {name: {_iregex: $name}}) {
+    pokemon_v2_pokemon(where: {name: {_iregex: $name}}) {
       name
     }
   }
