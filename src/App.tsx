@@ -1,23 +1,39 @@
-import  { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
-import { GET_ALL_POKEMONS } from './queries'
+import { GET_ALL_POKEMONS, GET_POKEMONS_BY_NAME } from './queries'
+import PokemonCard from './componens/PokemonCard'
+import {  TextField } from '@mui/material'
+import Loader from './componens/Loader'
 
 function App() {
-  const { data, loading, error } = useQuery(GET_ALL_POKEMONS)
-  useEffect(()=>{
-    console.log('===========',data)
-  }, [data])
+  const [name, setName] = useState('Mas')
+  const { data, loading, error } = useQuery(GET_POKEMONS_BY_NAME, {
+    variables: {
+      name,
+    },
+  })
 
-  const handeleClick = async ()=>{
-    // https://pokeapi.co/api/v2/pokemon/ditto
-    const respJson = await  fetch('https://pokeapi.co/api/v2/pokemon/ditto')
-    const resp = await respJson.json()
-    console.log('resp====', resp)
-  }
+  const [pokemons, setPokemons] = useState([])
+
+  useEffect(() => {
+    if (data && !loading && !error) {
+      setPokemons(data?.pokemon_v2_itemname)
+    }
+  }, [data])
 
   return (
     <div>
-      <button onClick={handeleClick}>Test api</button>
+
+      <TextField
+        id="outlined-basic"
+        label="pokemon name"
+        variant="outlined"
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      {loading && <Loader />}
+      {!loading && !pokemons.length && <h1>Not Found</h1>}
+      {!loading && pokemons.map(pokemon => <PokemonCard pokemon={pokemon} />)}
     </div>
   )
 }
