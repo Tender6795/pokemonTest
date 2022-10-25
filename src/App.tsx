@@ -4,6 +4,7 @@ import { GET_POKEMONS_BY_NAME } from './queries'
 import {  TextField } from '@mui/material'
 import Loader from './componens/Loader'
 import PokemonCardContainer from './componens/PokemonCardContainer'
+import { PokemonTypes } from './componens/PokemonTypes'
 
 function App() {
   const [name, setName] = useState('Charmander')
@@ -24,7 +25,6 @@ function App() {
 
   return (
     <div>
-
       <TextField
         id="outlined-basic"
         label="pokemon name"
@@ -32,6 +32,7 @@ function App() {
         value={name}
         onChange={e => setName(e.target.value)}
       />
+      <PokemonTypes/>
       {loading && <Loader />}
       {!loading && !pokemons.length && <h1>Not Found</h1>}
       {!loading && <PokemonCardContainer pokemons={pokemons}/>}
