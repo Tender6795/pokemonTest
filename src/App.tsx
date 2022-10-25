@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { styled } from '@mui/material/styles'
 import { TextField } from '@mui/material'
-import { GET_POKEMONS_BY_NAME } from './queries'
+import { GET_POKEMONS_BY_PARAMS } from './queries'
 import Loader from './componens/Loader'
 import PokemonCardContainer from './componens/PokemonCardContainer'
 import { PokemonTypes } from './componens/PokemonTypes'
@@ -16,7 +16,7 @@ function App() {
     specy:'',
     typeOfPokemon:''
   })
-  const { data, loading, error } = useQuery(GET_POKEMONS_BY_NAME, {
+  const { data, loading, error } = useQuery(GET_POKEMONS_BY_PARAMS, {
     variables: varieblesToSearch,
   })
 //specy: charjabug
