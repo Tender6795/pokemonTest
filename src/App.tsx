@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useQuery } from '@apollo/client'
+import { styled } from '@mui/material/styles'
+import { TextField } from '@mui/material'
 import { GET_POKEMONS_BY_NAME } from './queries'
-import {  TextField } from '@mui/material'
 import Loader from './componens/Loader'
 import PokemonCardContainer from './componens/PokemonCardContainer'
 import { PokemonTypes } from './componens/PokemonTypes'
@@ -26,20 +27,27 @@ function App() {
 
   return (
     <div>
-      <TextField
-        id="outlined-basic"
-        label="pokemon name"
-        variant="outlined"
-        value={name}
-        onChange={e => setName(e.target.value)}
-      />
-      <PokemonTypes/>
-      <PokemonSpecies/>
+      <StyledHeader>
+        <TextField
+          id="outlined-basic"
+          label="Search by name"
+          variant="outlined"
+          value={name}
+          onChange={e => setName(e.target.value)}
+        />
+        <PokemonTypes />
+        <PokemonSpecies />
+      </StyledHeader>
       {loading && <Loader />}
       {!loading && !pokemons.length && <h1>Not Found</h1>}
-      {!loading && <PokemonCardContainer pokemons={pokemons}/>}
+      {!loading && <PokemonCardContainer pokemons={pokemons} />}
     </div>
   )
 }
+
+const StyledHeader = styled('div')(() => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+}))
 
 export default App
