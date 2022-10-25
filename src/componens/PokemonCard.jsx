@@ -8,7 +8,7 @@ export default function PokemonCard({ pokemon }) {
   return (
     <StyledCard>
       <CardContent>
-        <Typography variant="h5">{name}</Typography>
+        <Typography variant="h5">{name.toUpperCase()}</Typography>
         <Typography variant="h6">height: {height}</Typography>
         <Typography variant="h6">experience: {base_experience}</Typography>
         <Typography variant="h6">weight: {weight}</Typography>
