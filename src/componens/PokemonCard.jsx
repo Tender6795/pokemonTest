@@ -1,12 +1,7 @@
-import { useEffect } from 'react'
 import { Card, CardContent, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 export default function PokemonCard({ pokemon }) {
-  useEffect(()=>{
-    console.log('pokemon===', pokemon)
-  }, [pokemon])
-
   const { name, height, base_experience, weight, pokemon_v2_pokemonspecy, pokemon_v2_pokemontypes  } = pokemon
   const  specyName= pokemon_v2_pokemonspecy.name
   const types = pokemon_v2_pokemontypes.map(t=>t.pokemon_v2_type.name).join(', ')
