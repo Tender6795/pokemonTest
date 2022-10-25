@@ -22,6 +22,9 @@ export const GET_POKEMONS_BY_NAME = gql`
           name
         }
       }
+      pokemon_v2_pokemonspecy {
+        name
+      }
     }
-    }
+  }
 `
