@@ -4,6 +4,7 @@ import { GET_POKEMONS_BY_NAME } from './queries'
 import PokemonCard from './componens/PokemonCard'
 import {  TextField } from '@mui/material'
 import Loader from './componens/Loader'
+import PokemonCardContainer from './componens/PokemonCardContainer'
 
 function App() {
   const [name, setName] = useState('Mas')
@@ -33,9 +34,7 @@ function App() {
       />
       {loading && <Loader />}
       {!loading && !pokemons.length && <h1>Not Found</h1>}
-      {!loading && pokemons.map((pokemon, i) => {
-        return <PokemonCard pokemon={pokemon} key={i} />
-      })}
+      {!loading && <PokemonCardContainer pokemons={pokemons}/>}
     </div>
   )
 }
