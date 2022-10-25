@@ -35,3 +35,10 @@ export const GET_POKEMONS_TYPES = gql`
     }
   }
 `
+export const GET_POKEMONS_SPECIES = gql`
+  query {
+    pokemon_v2_pokemonspecies {
+      name
+    }
+  }
+`
