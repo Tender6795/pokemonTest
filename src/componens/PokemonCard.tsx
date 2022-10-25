@@ -1,10 +1,24 @@
 import { Card, CardContent, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import { IPokemon } from '../interfaces/pokemon'
 
-export default function PokemonCard({ pokemon }) {
-  const { name, height, base_experience, weight, pokemon_v2_pokemonspecy, pokemon_v2_pokemontypes  } = pokemon
-  const  specyName= pokemon_v2_pokemonspecy.name
-  const types = pokemon_v2_pokemontypes.map(t=>t.pokemon_v2_type.name).join(', ')
+interface PokemonCardContainerProps {
+  pokemon: IPokemon
+}
+
+export default function PokemonCard({ pokemon }: PokemonCardContainerProps) {
+  const {
+    name,
+    height,
+    base_experience,
+    weight,
+    pokemon_v2_pokemonspecy,
+    pokemon_v2_pokemontypes,
+  } = pokemon
+  const specyName = pokemon_v2_pokemonspecy.name
+  const types = pokemon_v2_pokemontypes
+    .map(t => t.pokemon_v2_type.name)
+    .join(', ')
   return (
     <StyledCard>
       <CardContent>
