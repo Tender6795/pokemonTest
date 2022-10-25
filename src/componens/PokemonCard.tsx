@@ -36,5 +36,5 @@ export default function PokemonCard({ pokemon }: PokemonCardContainerProps) {
 const StyledCard = styled(Card)(() => ({
   background: '#eeeeee',
   width: '30%',
-  marginTop: '20px',
+  margin: '20px',
 }))

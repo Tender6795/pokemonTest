@@ -20,7 +20,7 @@ const PokemonCardContainer  =({ pokemons }: PokemonCardContainerProps) => {
 const StyledDiv = styled('div')(() => ({
   display: 'flex',
   flexWrap: 'wrap',
-  justifyContent: 'space-between',
+  justifyContent: 'flex-start',
 }))
 
 export default PokemonCardContainer
