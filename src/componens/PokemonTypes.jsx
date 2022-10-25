@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { GET_POKEMONS_TYPES } from '../queries'
 
-export const PokemonTypes = () => {
+export const PokemonTypes = ({ changeTypeOfPokemon }) => {
   const { data, loading, error } = useQuery(GET_POKEMONS_TYPES)
   const [pokemonTypes, setPokemonTypes] = useState([])
   const [selectedType, setSelectedType] = useState('')
@@ -14,14 +14,21 @@ export const PokemonTypes = () => {
     }
   }, [data])
 
+  const hanldeChange =(e)=>{
+    const newValue = e.target.value
+    setSelectedType(newValue)
+    changeTypeOfPokemon(newValue==='All'? '': newValue )
+}
+
   return (
     <FormControl sx={{ minWidth: 320 }}>
       <InputLabel>Type of Pokemon</InputLabel>
       <Select
         value={selectedType}
         label="Type of Pokemon"
-        onChange={e => setSelectedType(e.target.value)}
+        onChange={hanldeChange}
       >
+        <MenuItem value={'All'}>All</MenuItem>
         {pokemonTypes.map((type, i) => (
           <MenuItem value={type.name} key={i}>
             {type.name}

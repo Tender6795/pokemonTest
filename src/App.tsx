@@ -10,15 +10,17 @@ import { PokemonSpecies } from './componens/PokemonSpecies'
 
 function App() {
   const [name, setName] = useState('Char')
+  const [pokemons, setPokemons] = useState([])
+  const [varieblesToSearch , setVarieblesToSearch] = useState({
+    name,
+    specy:'',
+    typeOfPokemon:''
+  })
   const { data, loading, error } = useQuery(GET_POKEMONS_BY_NAME, {
-    variables: {
-      name,
-      specy:'charjabug', //TODO
-      typeOfPokemon: 'bug' //TODO
-    },
+    variables: varieblesToSearch,
   })
 //specy: charjabug
-  const [pokemons, setPokemons] = useState([])
+  
 
   useEffect(() => {
     if (data && !loading && !error) {
@@ -26,6 +28,14 @@ function App() {
     }
     // eslint-disable-next-line
   }, [data])
+
+  const changeTypeOfPokemon = (typeOfPokemon:string) =>{
+    setVarieblesToSearch({...varieblesToSearch, typeOfPokemon})
+  }
+
+  const changeSpecyOfPokemon = (specy:string) =>{
+    setVarieblesToSearch({...varieblesToSearch, specy})
+  }
 
   return (
     <div>
@@ -37,8 +47,8 @@ function App() {
           value={name}
           onChange={e => setName(e.target.value)}
         />
-        <PokemonTypes />
-        <PokemonSpecies />
+        <PokemonTypes changeTypeOfPokemon={changeTypeOfPokemon}/>
+        <PokemonSpecies changeSpecyOfPokemon={changeSpecyOfPokemon} />
       </StyledHeader>
       {loading && <Loader />}
       {!loading && !pokemons.length && <h1>Not Found</h1>}
