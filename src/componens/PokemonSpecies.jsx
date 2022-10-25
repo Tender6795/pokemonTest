@@ -6,7 +6,7 @@ import { GET_POKEMONS_SPECIES } from '../queries'
 export const PokemonSpecies = () => {
   const { data, loading, error } = useQuery(GET_POKEMONS_SPECIES)
   const [pokemonSpecies, setPokemonSpecies] = useState([])
-  const [selectedSpecy, setSelectedSpecy] = useState()
+  const [selectedSpecy, setSelectedSpecy] = useState('')
 
   useEffect(() => {
     if (data && !loading && !error) {
