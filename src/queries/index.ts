@@ -9,7 +9,7 @@ export const GET_ALL_POKEMONS = gql`
   }
 `
 
-export const GET_POKEMONS_BY_NAME = gql`
+export const GET_POKEMONS_BY_PARAMS = gql`
   query getPokemonsByName(
     $name: String
     $specy: String
