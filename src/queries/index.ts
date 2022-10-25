@@ -10,8 +10,18 @@ export const GET_ALL_POKEMONS = gql`
 `
 
 export const GET_POKEMONS_BY_NAME = gql`
-  query getPokemonsByName($name: String) {
-    pokemon_v2_pokemon(where: { name: { _iregex: $name } }) {
+  query getPokemonsByName(
+    $name: String
+    $specy: String
+    $typeOfPokemon: String
+  ) {
+    pokemon_v2_pokemon(
+      where: {
+        name: { _iregex: $name }
+        pokemon_v2_pokemonspecy: { name: { _iregex: $specy } }
+        pokemon_v2_pokemontypes: {_or: {pokemon_v2_type: {name: {_iregex: $typeOfPokemon}}}}
+      }
+    ) {
       base_experience
       height
       id

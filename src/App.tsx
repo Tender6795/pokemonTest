@@ -9,13 +9,15 @@ import { PokemonTypes } from './componens/PokemonTypes'
 import { PokemonSpecies } from './componens/PokemonSpecies'
 
 function App() {
-  const [name, setName] = useState('Charmander')
+  const [name, setName] = useState('Char')
   const { data, loading, error } = useQuery(GET_POKEMONS_BY_NAME, {
     variables: {
       name,
+      specy:'charjabug', //TODO
+      typeOfPokemon: 'bug' //TODO
     },
   })
-
+//specy: charjabug
   const [pokemons, setPokemons] = useState([])
 
   useEffect(() => {
