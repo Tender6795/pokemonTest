@@ -17,11 +17,9 @@ function App() {
     typeOfPokemon:''
   })
   const { data, loading, error } = useQuery(GET_POKEMONS_BY_PARAMS, {
-    variables: varieblesToSearch,
+    variables: {...varieblesToSearch, name},
   })
-//specy: charjabug
   
-
   useEffect(() => {
     if (data && !loading && !error) {
       setPokemons(data?.pokemon_v2_pokemon)
